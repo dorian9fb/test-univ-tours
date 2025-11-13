@@ -8,3 +8,7 @@ ce que le projet va \*\*permettre\*\* :
 * Les stocker en BDD
 * Les afficher
 * Utiliser Node-RED
+
+Ajouter une image : 
+
+![diode](diode.png)
