@@ -29,3 +29,7 @@ flowchart TD
     local --> |git add file1 file2| index
     index --> |git commit -m...| local
 ```
+
+Ajouter une image sur la branche bis : 
+
+![diodeR](diodeR.png)
