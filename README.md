@@ -12,3 +12,10 @@ ce que le projet va \*\*permettre\*\* :
 Ajouter une image : 
 
 ![diode](diode.png)
+
+```mermaid
+flowchart TD
+    mosquitto[seveur<br>mosquitto] --> |messages| Rpi[Raspberry Pi<br>Node-RED<br>documentation] 
+    Rpi--> BDD
+    Rpi <--> Github
+```
