@@ -19,3 +19,13 @@ flowchart TD
     Rpi--> BDD
     Rpi <--> Github
 ```
+
+```mermaid
+flowchart TD
+    github -->|git clone URL| local
+    local --> |git push origin main| github
+    github --> |git pull origin main| local
+    local --> |edition / creation<br> fichier| local
+    local --> |git add file1 file2| index
+    index --> |git commit -m...| local
+```
