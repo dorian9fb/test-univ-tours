@@ -1,5 +1,5 @@
 ## Création de table
-'''sql
+'''
 -- New_Etudiant definition
 
 CREATE TABLE New_Etudiant (
