@@ -9,6 +9,7 @@ CREATE TABLE New_Etudiant (
     ville VARCHAR(50)
 );
 ```
+# Navigation dans le tableau
 ```sql
 -- Afficher toutes les lignes de la table Etudiants
 SELECT * FROM Etudiants;
