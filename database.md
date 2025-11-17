@@ -1,5 +1,5 @@
 ## Création de table
-sql'''
+'''
 -- New_Etudiant definition
 
 CREATE TABLE New_Etudiant (
@@ -9,4 +9,4 @@ CREATE TABLE New_Etudiant (
 	email VARCHAR(50),
 	ville VARCHAR(50)
 );
-'''
+'''sql
