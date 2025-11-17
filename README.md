@@ -31,7 +31,16 @@ flowchart TD
     index --> |git commit -m...| local
 ```
 =====================================================================
-Commande utile :
-git init,Initialise --> un nouveau dépôt Git
-git clone <url>  --> Clone un dépôt distant
-git status --> Affiche l’état des fichiers (modifiés, ajoutés, etc.)
+## Création de table
+
+'''sql
+-- New_Etudiant definition
+
+CREATE TABLE New_Etudiant (
+	nom VARCHAR(50),
+	prenom VARCHAR(50),
+	age INTEGER,
+	email VARCHAR(50),
+	ville VARCHAR(50)
+);
+'''
