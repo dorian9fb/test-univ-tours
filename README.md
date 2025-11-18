@@ -32,7 +32,6 @@ flowchart TD
 ```
 =====================================================================
 ## Création de table
-
 '''sql
 -- New_Etudiant definition
 

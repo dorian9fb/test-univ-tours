@@ -1,0 +1,230 @@
+```sql
+[
+    {
+        "id": "b9c42e2dec78b2f2",
+        "type": "tab",
+        "label": "Flux 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "58ffae9d.a7005",
+        "type": "debug",
+        "z": "b9c42e2dec78b2f2",
+        "name": "",
+        "active": true,
+        "complete": false,
+        "x": 570,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "17626462.e89d9c",
+        "type": "inject",
+        "z": "b9c42e2dec78b2f2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "300",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 280,
+        "wires": [
+            [
+                "c3a08a4d9dca8378"
+            ]
+        ]
+    },
+    {
+        "id": "2921667d.d6de9a",
+        "type": "function",
+        "z": "b9c42e2dec78b2f2",
+        "name": "Format timestamp",
+        "func": "// Create a Date object from the payload\nvar date = new Date(msg.payload);\n// Change the payload to be a formatted Date string\nmsg.payload = date.toString();\n// Return the message so it can be sent on\nreturn msg;",
+        "outputs": 1,
+        "x": 370,
+        "y": 160,
+        "wires": [
+            [
+                "58ffae9d.a7005"
+            ]
+        ]
+    },
+    {
+        "id": "45853784b1f3769d",
+        "type": "inject",
+        "z": "b9c42e2dec78b2f2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "2921667d.d6de9a"
+            ]
+        ]
+    },
+    {
+        "id": "c3a08a4d9dca8378",
+        "type": "http request",
+        "z": "b9c42e2dec78b2f2",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.csv",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 310,
+        "y": 280,
+        "wires": [
+            [
+                "8282972b3047704f"
+            ]
+        ]
+    },
+    {
+        "id": "8282972b3047704f",
+        "type": "csv",
+        "z": "b9c42e2dec78b2f2",
+        "name": "",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\r\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 490,
+        "y": 280,
+        "wires": [
+            [
+                "330aabfc2b1a6be3",
+                "0c5fa8429ac08a63"
+            ]
+        ]
+    },
+    {
+        "id": "330aabfc2b1a6be3",
+        "type": "debug",
+        "z": "b9c42e2dec78b2f2",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "0c5fa8429ac08a63",
+        "type": "switch",
+        "z": "b9c42e2dec78b2f2",
+        "name": "",
+        "property": "payload.mag",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "6",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 660,
+        "y": 360,
+        "wires": [
+            [
+                "a31e3b6e762fa996"
+            ]
+        ]
+    },
+    {
+        "id": "a31e3b6e762fa996",
+        "type": "change",
+        "z": "b9c42e2dec78b2f2",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "PANIC !",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 670,
+        "y": 420,
+        "wires": [
+            [
+                "972eccb61b062c29"
+            ]
+        ]
+    },
+    {
+        "id": "972eccb61b062c29",
+        "type": "debug",
+        "z": "b9c42e2dec78b2f2",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 480,
+        "wires": []
+    }
+]
+```
